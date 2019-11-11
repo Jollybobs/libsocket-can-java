@@ -19,12 +19,13 @@ import java.util.Set;
 
 public final class CanSocket implements Closeable {
     static {
-        final String LIB_JNI_SOCKETCAN = "/lib/libjni_socketcan";
+        final String LIB_JNI_SOCKETCAN = "jni_socketcan";
         try {
             System.loadLibrary(LIB_JNI_SOCKETCAN);
         } catch (final UnsatisfiedLinkError e) {
             try {
                 loadLibFromJar(LIB_JNI_SOCKETCAN);
+                System.out.println("loaded from jar");
             } catch (final IOException _e) {
                 throw new UnsatisfiedLinkError(LIB_JNI_SOCKETCAN);
             }
